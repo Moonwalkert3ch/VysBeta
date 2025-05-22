@@ -21,15 +21,15 @@ const LandingPage: React.FC = () => {
           color: 'white',
         }}
       >
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '5rem' }}>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '4rem' }}>
           Welcome to VYS
         </h1>
         <p style={{ fontSize: '1.25rem', maxWidth: '640px', margin: '0 auto' }}>
-          A Virtual Yard Sale platform to explore secondhand items like never before — in 3D and VR.
+          A Virtual Yard Sale platform to explore secondhand items like never before — in 3D and VR!
         </p>
 
         {/* 3D Model Canvas */}
-        <div style={{ width: '100%', height: '24rem', marginTop: '1rem' }}>
+        <div style={{ width: '100%', height: '24rem', marginTop: '0rem' }}>
           <Canvas camera={{ position: [0, 0, 5] }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} />
@@ -47,7 +47,16 @@ const LandingPage: React.FC = () => {
           margin: '0 auto',
         }}
       >
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FF3B3F' }}>
+       <h2
+          style={{
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            marginBottom: '1rem',
+            color: '#222222', // dark charcoal instead of bright red
+            borderLeft: '4px solid #FF3B3F', // subtle colored accent bar
+            paddingLeft: '0.75rem',
+          }}
+        >
           The Problem
         </h2>
         <p style={{ marginBottom: '2rem' }}>
@@ -55,12 +64,22 @@ const LandingPage: React.FC = () => {
           Repetitive requests for more photos or videos often waste time and discourage both sides.
         </p>
 
-        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#004AAD' }}>
+        <h2
+          style={{
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            marginBottom: '1rem',
+            color: '#222222', // keep it consistent
+            borderLeft: '4px solid #004AAD', // blue accent
+            paddingLeft: '0.75rem',
+          }}
+        >
           Our Solution
         </h2>
         <p>
           VYS allows sellers to turn item photos into interactive 3D models with VR viewing and AI-enhanced descriptions, making it easy for buyers to assess condition, scale, and fit with confidence.
         </p>
+
       </section>
 
       {/* CTA Section */}
@@ -69,7 +88,7 @@ const LandingPage: React.FC = () => {
           textAlign: 'center',
           padding: '3rem 1rem',
           backgroundColor: '#FF3B3F',
-          color: 'white',
+          color: 'blue',
         }}
       >
         <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
@@ -83,13 +102,20 @@ const LandingPage: React.FC = () => {
             borderRadius: '9999px',
             fontWeight: '600',
             cursor: 'pointer',
-            transition: 'background-color 0.3s ease',
+            transition: 'background-color 0.3s ease, color 0.3s ease',
           }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#f3f3f3')}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = '#004AAD'; // blue
+            e.currentTarget.style.color = 'white';              // white text on blue bg
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = 'white';
+            e.currentTarget.style.color = '#FF3B3F';             // revert to original red text
+          }}
         >
           Get Started
         </button>
+
       </section>
     </main>
   );
