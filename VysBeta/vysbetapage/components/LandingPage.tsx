@@ -1,49 +1,93 @@
+"use client";
+
 import React from 'react';
+import { Canvas } from '@react-three/fiber';
+import { useGLTF, OrbitControls } from '@react-three/drei';
+
+const Model: React.FC = () => {
+  const gltf = useGLTF('/models/3d-glasses.gltf');
+  return <primitive object={gltf.scene} scale={1.5} />;
+};
 
 const LandingPage: React.FC = () => {
   return (
-    <main className="min-h-screen bg-white text-brandBlue">
+    <main style={{ minHeight: '100vh', backgroundColor: '#ffffff', color: '#004AAD' }}>
       {/* Hero Section */}
-      <section className="text-center py-16 px-4 bg-gradient-to-b from-brandRed to-brandBlue text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to VYS</h1>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto">
+      <section
+        style={{
+          textAlign: 'center',
+          padding: '4rem 1rem',
+          background: 'linear-gradient(to bottom, #FF3B3F, #004AAD)',
+          color: 'white',
+        }}
+      >
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '5rem' }}>
+          Welcome to VYS
+        </h1>
+        <p style={{ fontSize: '1.25rem', maxWidth: '640px', margin: '0 auto' }}>
           A Virtual Yard Sale platform to explore secondhand items like never before — in 3D and VR.
         </p>
-      </section>
 
-      {/* 3D Model Section */}
-      <section className="p-6 flex justify-center">
-        <div className="w-full max-w-3xl aspect-video">
-          <iframe
-            title="3d Glasses"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; fullscreen; xr-spatial-tracking"
-            className="w-full h-full rounded-lg shadow-lg"
-            src="https://sketchfab.com/models/0eeb672fdcfc454cae92452f611fb541/embed"
-            />
-
+        {/* 3D Model Canvas */}
+        <div style={{ width: '100%', height: '24rem', marginTop: '1rem' }}>
+          <Canvas camera={{ position: [0, 0, 5] }}>
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[5, 5, 5]} />
+            <Model />
+            <OrbitControls />
+          </Canvas>
         </div>
       </section>
 
       {/* Problem / Solution Section */}
-      <section className="px-6 py-12 max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-4 text-brandRed">The Problem</h2>
-        <p className="mb-8">
+      <section
+        style={{
+          padding: '3rem 1.5rem',
+          maxWidth: '64rem',
+          margin: '0 auto',
+        }}
+      >
+        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#FF3B3F' }}>
+          The Problem
+        </h2>
+        <p style={{ marginBottom: '2rem' }}>
           Many buyers and sellers in their 20s–30s are frustrated with not being able to fully inspect items online before buying. 
           Repetitive requests for more photos or videos often waste time and discourage both sides.
         </p>
 
-        <h2 className="text-3xl font-bold mb-4 text-brandBlue">Our Solution</h2>
+        <h2 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#004AAD' }}>
+          Our Solution
+        </h2>
         <p>
           VYS allows sellers to turn item photos into interactive 3D models with VR viewing and AI-enhanced descriptions, making it easy for buyers to assess condition, scale, and fit with confidence.
         </p>
       </section>
 
-      {/* CTA */}
-      <section className="text-center py-12 bg-brandRed text-white">
-        <h3 className="text-2xl font-bold mb-4">Ready to explore items in 3D?</h3>
-        <button className="bg-white text-brandRed px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
+      {/* CTA Section */}
+      <section
+        style={{
+          textAlign: 'center',
+          padding: '3rem 1rem',
+          backgroundColor: '#FF3B3F',
+          color: 'white',
+        }}
+      >
+        <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+          Ready to explore items in 3D?
+        </h3>
+        <button
+          style={{
+            backgroundColor: 'white',
+            color: '#FF3B3F',
+            padding: '0.75rem 1.5rem',
+            borderRadius: '9999px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#f3f3f3')}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'white')}
+        >
           Get Started
         </button>
       </section>
